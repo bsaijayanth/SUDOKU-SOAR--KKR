@@ -1,0 +1,40 @@
+# if a cell has only one case this rules assigns that case to value and removes that case
+sp {propose*single_case_rule
+   (state <s> ^name Sudoku)
+   (<s> ^cell <cell> )
+   (<cell> ^row <r> ^col <c> ^grid <g> ^count 1 ^case <v>) 
+   (<s> ^case-counter <f> ^case-counter <d> ^case-counter <e>)                    
+   (<d> ^row <r> ^case <v> )
+    (<e> ^col <c> ^case <v>)
+   (<f> ^grid <g> ^case <v>)
+  
+--> 
+(<s> ^operator <op> + > = )
+   (<op> ^name single_case)
+   
+   (<op> ^cell <cell> ^case-counter-row <f>  ^case-counter-col <d>  ^case-counter-grid <e>  )
+}
+
+sp {apply*single_case_rule
+   (state <s> ^operator <op>)
+   (<op> ^name single_case)
+   (<op> ^cell <cell>)
+   (<op>  ^case-counter-row <c>  ^case-counter-col <r>  ^case-counter-grid <g>  )
+   (<cell>  ^case <val> ^value <v> ^count <co>)
+  (<c> ^count <count-col>)
+  (<r> ^count <count-row>)
+  (<g> ^count <count-grid>)
+-->
+   (<c> ^count <count-col> -)
+   (<c> ^count (- <count-col> 1))
+   (<r> ^count <count-row> -) 
+   (<r> ^count (- <count-row> 1)) 
+   (<g> ^count <count-grid> -) 
+   (<g> ^count (- <count-grid> 1)) 
+   (<cell> ^value <v> - )
+   (<cell> ^value <val>)
+   (<cell> ^case <val> -)
+   (<cell> ^count <co> -)  
+   (<cell> ^count (- <co> 1))
+}
+   

@@ -1,0 +1,72 @@
+sp {propose*initialize-Sudoku
+   (state <s> ^superstate nil
+             -^name)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name initialize-Sudoku)
+}
+#initializing 
+#cell-ab represents the ath row bth column cell in sudoku board
+#arb is used to check if nubmer b is present in row a 
+#acb is used to check if nubmer b is present in column a
+#agb is used to check if nubmer b is present in grid a
+
+sp {apply*initialize-Sudoku
+   (state <s> ^operator <op>)
+   (<op> ^name initialize-Sudoku)
+-->
+   (<s> ^name Sudoku)(write |Welcome to Sudoku
+              |)
+ (<s> ^cell <cell-11> ^cell <cell-12>  ^cell <cell-13> ^cell <cell-14>  ^cell <cell-15>  ^cell <cell-16> ^cell <cell-17>  ^cell <cell-18> ^cell <cell-19>)
+ (<s> ^cell <cell-21> ^cell <cell-22>  ^cell <cell-23> ^cell <cell-24>  ^cell <cell-25>  ^cell <cell-26> ^cell <cell-27>  ^cell <cell-28> ^cell <cell-29>)
+ (<s> ^cell <cell-31> ^cell <cell-32>  ^cell <cell-33> ^cell <cell-34>  ^cell <cell-35>  ^cell <cell-36> ^cell <cell-37>  ^cell <cell-38> ^cell <cell-39>)                    
+ (<s> ^cell <cell-41> ^cell <cell-42>  ^cell <cell-43> ^cell <cell-44>  ^cell <cell-45>  ^cell <cell-46> ^cell <cell-47>  ^cell <cell-48> ^cell <cell-49>)
+ (<s> ^cell <cell-51> ^cell <cell-52>  ^cell <cell-53> ^cell <cell-54>  ^cell <cell-55>  ^cell <cell-56> ^cell <cell-57>  ^cell <cell-58> ^cell <cell-59>)
+ (<s> ^cell <cell-61> ^cell <cell-62>  ^cell <cell-63> ^cell <cell-64>  ^cell <cell-65>  ^cell <cell-66> ^cell <cell-67>  ^cell <cell-68> ^cell <cell-69>)
+ (<s> ^cell <cell-71> ^cell <cell-72>  ^cell <cell-73> ^cell <cell-74>  ^cell <cell-75>  ^cell <cell-76> ^cell <cell-77>  ^cell <cell-78> ^cell <cell-79>)
+ (<s> ^cell <cell-81> ^cell <cell-82>  ^cell <cell-83> ^cell <cell-84>  ^cell <cell-85>  ^cell <cell-86> ^cell <cell-87>  ^cell <cell-88> ^cell <cell-89>)                    
+ (<s> ^cell <cell-91> ^cell <cell-92>  ^cell <cell-93> ^cell <cell-94>  ^cell <cell-95>  ^cell <cell-96> ^cell <cell-97>  ^cell <cell-98> ^cell <cell-99>)                    
+
+   
+   
+ (<s> ^check <1r1>  ^check <1r2>   ^check <1r3>   ^check <1r4>   ^check <1r5>   ^check <1r6>   ^check <1r7>   ^check <1r8>   ^check <1r9> )
+ (<s> ^check <2r1>  ^check <2r2>   ^check <2r3>   ^check <2r4>   ^check <2r5>   ^check <2r6>   ^check <2r7>   ^check <2r8>   ^check <2r9> )
+ (<s> ^check <3r1>  ^check <3r2>   ^check <3r3>   ^check <3r4>   ^check <3r5>   ^check <3r6>   ^check <3r7>   ^check <3r8>   ^check <3r9> )
+ (<s> ^check <4r1>  ^check <4r2>   ^check <4r3>   ^check <4r4>   ^check <4r5>   ^check <4r6>   ^check <4r7>   ^check <4r8>   ^check <4r9> )
+ (<s> ^check <5r1>  ^check <5r2>   ^check <5r3>   ^check <5r4>   ^check <5r5>   ^check <5r6>   ^check <5r7>   ^check <5r8>   ^check <5r9> )
+ (<s> ^check <6r1>  ^check <6r2>   ^check <6r3>   ^check <6r4>   ^check <6r5>   ^check <6r6>   ^check <6r7>   ^check <6r8>   ^check <6r9> ) 
+ (<s> ^check <7r1>  ^check <7r2>   ^check <7r3>   ^check <7r4>   ^check <7r5>   ^check <7r6>   ^check <7r7>   ^check <7r8>   ^check <7r9> ) 
+ (<s> ^check <8r1>  ^check <8r2>   ^check <8r3>   ^check <8r4>   ^check <8r5>   ^check <8r6>   ^check <8r7>   ^check <8r8>   ^check <8r9> )
+ (<s> ^check <9r1>  ^check <9r2>   ^check <9r3>   ^check <9r4>   ^check <9r5>   ^check <9r6>   ^check <9r7>   ^check <9r8>   ^check <9r9> ) 
+                     
+
+   
+ (<s> ^check <1c1>  ^check <1c2>   ^check <1c3>   ^check <1c4>   ^check <1c5>   ^check <1c6>   ^check <1c7>   ^check <1c8>   ^check <1c9> )
+ (<s> ^check <2c1>  ^check <2c2>   ^check <2c3>   ^check <2c4>   ^check <2c5>   ^check <2c6>   ^check <2c7>   ^check <2c8>   ^check <2c9> )
+ (<s> ^check <3c1>  ^check <3c2>   ^check <3c3>   ^check <3c4>   ^check <3c5>   ^check <3c6>   ^check <3c7>   ^check <3c8>   ^check <3c9> )
+ (<s> ^check <4c1>  ^check <4c2>   ^check <4c3>   ^check <4c4>   ^check <4c5>   ^check <4c6>   ^check <4c7>   ^check <4c8>   ^check <4c9> )
+ (<s> ^check <5c1>  ^check <5c2>   ^check <5c3>   ^check <5c4>   ^check <5c5>   ^check <5c6>   ^check <5c7>   ^check <5c8>   ^check <5c9> )
+ (<s> ^check <6c1>  ^check <6c2>   ^check <6c3>   ^check <6c4>   ^check <6c5>   ^check <6c6>   ^check <6c7>   ^check <6c8>   ^check <6c9> ) 
+ (<s> ^check <7c1>  ^check <7c2>   ^check <7c3>   ^check <7c4>   ^check <7c5>   ^check <7c6>   ^check <7c7>   ^check <7c8>   ^check <7c9> ) 
+ (<s> ^check <8c1>  ^check <8c2>   ^check <8c3>   ^check <8c4>   ^check <8c5>   ^check <8c6>   ^check <8c7>   ^check <8c8>   ^check <8c9> )
+ (<s> ^check <9c1>  ^check <9c2>   ^check <9c3>   ^check <9c4>   ^check <9c5>   ^check <9c6>   ^check <9c7>   ^check <9c8>   ^check <9c9> ) 
+
+   
+ (<s> ^check <1g1>  ^check <1g2>   ^check <1g3>   ^check <1g4>   ^check <1g5>   ^check <1g6>   ^check <1g7>   ^check <1g8>   ^check <1g9> )
+ (<s> ^check <2g1>  ^check <2g2>   ^check <2g3>   ^check <2g4>   ^check <2g5>   ^check <2g6>   ^check <2g7>   ^check <2g8>   ^check <2g9> )
+ (<s> ^check <3g1>  ^check <3g2>   ^check <3g3>   ^check <3g4>   ^check <3g5>   ^check <3g6>   ^check <3g7>   ^check <3g8>   ^check <3g9> )
+ (<s> ^check <4g1>  ^check <4g2>   ^check <4g3>   ^check <4g4>   ^check <4g5>   ^check <4g6>   ^check <4g7>   ^check <4g8>   ^check <4g9> )
+ (<s> ^check <5g1>  ^check <5g2>   ^check <5g3>   ^check <5g4>   ^check <5g5>   ^check <5g6>   ^check <5g7>   ^check <5g8>   ^check <5g9> )
+ (<s> ^check <6g1>  ^check <6g2>   ^check <6g3>   ^check <6g4>   ^check <6g5>   ^check <6g6>   ^check <6g7>   ^check <6g8>   ^check <6g9> ) 
+ (<s> ^check <7g1>  ^check <7g2>   ^check <7g3>   ^check <7g4>   ^check <7g5>   ^check <7g6>   ^check <7g7>   ^check <7g8>   ^check <7g9> ) 
+ (<s> ^check <8g1>  ^check <8g2>   ^check <8g3>   ^check <8g4>   ^check <8g5>   ^check <8g6>   ^check <8g7>   ^check <8g8>   ^check <8g9> )
+ (<s> ^check <9g1>  ^check <9g2>   ^check <9g3>   ^check <9g4>   ^check <9g5>   ^check <9g6>   ^check <9g7>   ^check <9g8>   ^check <9g9> ) 
+
+   
+   
+                     
+                     
+                     
+                     
+(halt)}
+

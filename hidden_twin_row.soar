@@ -1,0 +1,49 @@
+# if there are twins in two cells  in a row then other case in these two cells can be 
+# eliminated if there are no cases for those twins in that row
+
+sp {propose*hidden_twin_row
+   (state <s> ^name Sudoku)
+   (<s> ^cell <cell1>)
+   (<s> ^cell {<cell2> <> <cell1>} )
+   (<cell1>  ^row <r>  ^case <p> )
+   (<cell1> ^case {<q> <> <p> } )
+   (<cell2> ^row <r> ^case <p> ^case <q> )
+   (<cell1>^col <m> ^ grid <n> ^case { <t> <> <p> <> <q> })
+   (<s> ^case-counter <c> ^case-counter <d> ^case-counter <e> ^case-counter <a>  ^case-counter <b>   )
+   (<c> ^row <r> ^case <p> ^count 2)
+   (<d> ^row <r> ^case <q> ^count 2)
+   (<e> ^row <r> ^case <t> )
+   (<a> ^col <m> ^case <t> ) 
+    (<b> ^grid <n> ^case <t> )
+   
+   
+-->
+   (<s> ^operator <op> +  =)
+   (<op> ^name hidden_row)
+  (<op> ^cell <cell1> ^case <t> ^case-counter-col <e> ^case-counter-row <a> ^case-counter-grid <b>  )
+}
+
+sp {apply*hidden_twin_row
+   (state <s> ^operator <op>)
+   (<op> ^name hidden_row)
+    (<op> ^cell <cell> ^case <t> ^case-counter-row  <a> ^case-counter-col <e> ^case-counter-grid <b>)
+   (<e> ^count <count-col>)
+  (<a> ^count <count-row>)
+  (<b> ^count <count-grid>)
+   (<cell> ^count <co>)
+-->
+   (<e> ^count <count-col> -) 
+   (<e> ^count (- <count-col> 1))
+   (<a> ^count <count-row> -)
+   (<a> ^count (- <count-row> 1))
+   (<b> ^count <count-grid> -)
+   (<b> ^count (- <count-grid> 1))
+   (<cell> ^case <t> -)
+   (<cell> ^count <co> -) 
+   (<cell> ^count (- <co> 1))
+   
+   
+}
+
+
+

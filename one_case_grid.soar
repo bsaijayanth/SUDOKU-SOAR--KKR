@@ -1,0 +1,41 @@
+# all cases of a cell can be eliminated except one if that one case's global grid counter has count 1
+sp {propose*one_grid
+   (state <s> ^name Sudoku)
+   (<s> ^cell <cell> ^case-counter <c> ^case-counter <d> ^case-counter <a>  ^case-counter <b>  )
+   (<cell> ^row <m> ^col <n> ^grid <r> ^case <p> ^case {<q> <> <p> })
+   (<c> ^grid <r> ^case <p> ^count 1)
+   (<d> ^col <n> ^case <q>) 
+   (<a> ^row <m> ^case <q>)
+   (<b> ^grid <r> ^case <q>)
+
+-->
+   (<s> ^operator <op> + =)
+   (<op> ^name one_grid)
+  (<op> ^cell <cell> ^case-counter-row  <d> ^case-counter-col <a> ^case-counter-grid <b>  ^case <q>  )
+}
+
+sp {apply*one_grid
+   (state <s> ^operator <op>)
+   (<op> ^name one_grid)
+  (<op> ^cell <cell> ^case-counter-row <c> ^case-counter-col <a> ^case-counter-grid <b>  ^case <q>)
+   (<cell> ^count <co>  )
+   (<c> ^count <count-row> )
+   (<a> ^count <count-col> )
+   (<b> ^count <count-grid> )
+-->
+   (<c> ^count <count-row> -) 
+   (<c> ^count (- <count-row> 1))
+   
+   (<a> ^count <count-col> -)
+   (<a> ^count (- <count-col> 1))
+   
+   (<b> ^count <count-grid> -)
+   (<b> ^count (- <count-grid> 1))
+
+   (<cell> ^case <q> -)
+   
+   
+   (<cell> ^count <co>  -)
+   (<cell> ^count (- <co> 1))
+   
+}

@@ -1,0 +1,52 @@
+#it removes a case from a unallocated cell which value is allocated in the same column ; 
+#it also reduces local and global counters
+sp {propose*case_col
+   (state <s> ^name Sudoku)
+    (<s> ^cell <cell>)
+    (<s>  ^cell {<cell2> <> <cell>})
+    (<s> ^case-counter <c> ^case-counter <d> ^case-counter <e>)
+    (<c> ^col <r> ^case <v>)
+    (<cell> ^col <r> ^count 0 ^ value <v>)
+    (<cell2> ^row <x> ^grid <y> ^col <r> ^value 0 ^case <v>)
+    (<d> ^row <x> ^case <v> )
+    (<e> ^grid <y> ^case <v>)
+   
+-->
+   (<s> ^operator <o> + > =)
+   (<o> ^name case_remove_col)
+   (<o> ^cell <cell>)
+   (<o> ^cell2 <cell2>)
+   (<o> ^case-counter-col  <c> ^case-counter-row <d> ^case-counter-grid <e>)
+   
+}
+
+sp {apply*case_col
+   
+   (state <s> ^operator <op>)
+   (<op> ^name case_remove_col)
+   (<op> ^cell <cell>)
+   (<op> ^cell2 <cell2>)  
+  (<cell>  ^value <val>)
+  (<cell2>  ^count <co>)
+  (<op> ^case-counter-col <c> ^case-counter-row <x> ^case-counter-grid <y>)
+  (<c> ^count <count-col>)
+  (<x> ^count <count-row>)
+  (<y> ^count <count-grid>)
+  
+   
+   
+-->
+   (<c> ^count <count-col> -)
+   (<c> ^count (- <count-col> 1))
+   (<x> ^count <count-row> -) 
+   (<x> ^count (- <count-row> 1)) 
+   (<y> ^count <count-grid> -) 
+   (<y> ^count (- <count-grid> 1)) 
+   (<cell2> ^case <val> -)
+   (<cell2> ^count <co> -)  
+   (<cell2> ^count (- <co> 1 ))
+   
+   
+  
+  
+}

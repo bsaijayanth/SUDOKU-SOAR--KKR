@@ -1,0 +1,22 @@
+source _firstload.soar
+pushd all
+source all_source.soar
+popd
+pushd elaborations
+source elaborations_source.soar
+popd
+source case_removal_col.soar
+source case_removal_grid.soar
+source case_removal_row.soar
+source hidden_twin_col.soar
+source hidden_twin_grid.soar
+source hidden_twin_row.soar
+source initialize-Sudoku.soar
+source nakde_twin_grid.soar
+source naked_twin_col.soar
+source naked_twin_row.soar
+source one_case_col.soar
+source one_case_grid.soar
+source one_case_row.soar
+source prin.soar
+source single_case_rule.soar
